@@ -1,6 +1,14 @@
-<div>
-  @for (user of users(); track user.id) {
-    <p>Utilisateur {{user.id}} : {{ user.userName }}</p>
+<form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''">
+  <p>Ajouter un nouvel utilisateur :</p>
+  <input #userName type="text" placeholder="Nom d'utilisateur" required>
+  <input #email type="email" placeholder="email" required>
+  <button type="submit">Ajouter</button>
+</form>
+
+<div>  
+    <h1> Liste des utilisateurs 🫠 :</h1>
+  @for (user of users$ | async; track user.id) {
+    <p>⭐ {{ user.userName }} (id: {{ user.id }})</p>
       <button (click)="deleteUser(user.id)">Supprimer</button>
   }
 </div>

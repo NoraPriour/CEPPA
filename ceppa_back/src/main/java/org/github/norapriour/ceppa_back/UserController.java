@@ -24,4 +24,9 @@ public class UserController {
     public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
     }
+
+    @PostMapping("/users")
+    public User addUser(@RequestBody User newUser) {
+        return userRepository.save(newUser);
+    }
 }
