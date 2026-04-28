@@ -1,3 +1,4 @@
+<main>
 <h1>Gestion des utilisateurs</h1>
 
 <form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''" style="border: 1px solid black; padding: 10px; margin-bottom: 20px;">
@@ -9,8 +10,23 @@
 
 <div style="border: 1px solid black; padding: 10px;">  
     <h2> Liste des utilisateurs :</h2>
+    <ul>
   @for (user of users(); track user.id) {
-    <span>⭐ {{ user.userName }} (id: {{ user.id }})</span>
+    <li><span>⭐ {{ user.userName }} (id: {{ user.id }})</span>
       <button (click)="deleteUser(user.id)">Supprimer</button><br>
+    </li>
+  }
+    </ul>
+</div>
+<div id="articles">
+    <h2> Liste des articles :</h2>
+
+  @for (article of articles(); track article.id) {
+    <div class="article">
+      <h3>{{ article.titre }}</h3>
+      <p>Par {{ article.auteur }}</p>
+      <p>{{ article.texte }}</p>
+    </div>
   }
 </div>
+</main>
