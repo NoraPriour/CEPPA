@@ -1,14 +1,16 @@
-<form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''">
-  <p>Ajouter un nouvel utilisateur :</p>
+<h1>Gestion des utilisateurs</h1>
+
+<form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''" style="border: 1px solid black; padding: 10px; margin-bottom: 20px;">
+  <h2>Ajouter un nouvel utilisateur 🐥 :</h2>
   <input #userName type="text" placeholder="Nom d'utilisateur" required>
   <input #email type="email" placeholder="email" required>
   <button type="submit">Ajouter</button>
 </form>
 
-<div>  
-    <h1> Liste des utilisateurs 🫠 :</h1>
+<div style="border: 1px solid black; padding: 10px;">  
+    <h2> Liste des utilisateurs :</h2>
   @for (user of users(); track user.id) {
-    <p>⭐ {{ user.userName }} (id: {{ user.id }})</p>
-      <button (click)="deleteUser(user.id)">Supprimer</button>
+    <span>⭐ {{ user.userName }} (id: {{ user.id }})</span>
+      <button (click)="deleteUser(user.id)">Supprimer</button><br>
   }
 </div>
