@@ -16,12 +16,11 @@ import { Subject, switchMap, startWith } from 'rxjs';
 })
 export class App {
   private readonly api = inject(ApiService);
-  private refresh$ = new Subject<void>();
-
-  users$: Observable<{ id: number, userName: string }[]> = this.api.getUsers();
+  private refreshUsers$ = new Subject<void>();
+  private refreshArticles$ = new Subject<void>();
 
   users = toSignal(
-    this.refresh$.pipe(
+    this.refreshUsers$.pipe(
       startWith(null),
       switchMap(() => this.api.getUsers())
     )
@@ -29,13 +28,20 @@ export class App {
 
   deleteUser(id: number) {
     this.api.deleteUser(id).subscribe(() => {
-      this.refresh$.next();
+      this.refreshUsers$.next();
     });
   }
 
   addUser(userName: string, email: string) {
     this.api.addUser({ userName, email }).subscribe(newUser => {
-      this.refresh$.next();
+      this.refreshUsers$.next();
     });
   }
+
+  articles = toSignal(this.refreshArticles$.pipe(
+    startWith(null),
+    switchMap(() => this.api.getArticles())
+  ));
 }
+
+// essayer de supprimer les subscribe

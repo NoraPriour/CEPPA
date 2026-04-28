@@ -21,4 +21,7 @@ export class ApiService {
   addUser(user: { userName: string, email: string }) {
     return this.http.post<UserResult>('http://localhost:8080/api/users', user);
   }
+  getArticles() {
+    return this.http.get<{ id: number, auteur: string, titre: string, texte: string }[]>('http://localhost:8080/api/articles');
+  }
 }
