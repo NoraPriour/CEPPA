@@ -7,7 +7,7 @@
 
 <div>  
     <h1> Liste des utilisateurs 🫠 :</h1>
-  @for (user of users$ | async; track user.id) {
+  @for (user of users(); track user.id) {
     <p>⭐ {{ user.userName }} (id: {{ user.id }})</p>
       <button (click)="deleteUser(user.id)">Supprimer</button>
   }
