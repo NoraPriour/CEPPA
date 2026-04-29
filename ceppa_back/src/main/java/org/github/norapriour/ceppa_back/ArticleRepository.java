@@ -23,16 +23,34 @@ public class ArticleRepository {
 
     public Article save(Article article) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-
-        jdbc.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO articles (titre, texte, auteur_id) VALUES (?, ?, ?)", new String[]{"id"});
-            ps.setString(1, article.getTitre());
-            ps.setString(2, article.getTexte());
-            ps.setString(3, article.getAuteur());
-            return ps;
-        }, keyHolder);
-
-        int id = keyHolder.getKey().intValue();
-        return new Article(id, article.getAuteur(), article.getTitre(), article.getTexte());
+    Integer auteurId = null;
+    List<Integer> ids = jdbc.query(
+        "SELECT id FROM users WHERE user_name = ?",
+        (rs, rowNum) -> rs.getInt("id"),
+        article.getAuteur()
+    );
+    if (!ids.isEmpty()) {
+        auteurId = ids.get(0);
     }
+
+    // 2. Insert avec auteurId (int ou null)
+    final Integer finalAuteurId = auteurId; // nécessaire pour la lambda
+    jdbc.update(connection -> {
+        PreparedStatement ps = connection.prepareStatement(
+            "INSERT INTO articles (titre, texte, auteur_id) VALUES (?, ?, ?)",
+            new String[]{"id"}
+        );
+        ps.setString(1, article.getTitre());
+        ps.setString(2, article.getTexte());
+        if (finalAuteurId != null) {
+            ps.setInt(3, finalAuteurId);
+        } else {
+            ps.setNull(3, java.sql.Types.INTEGER);
+        }
+        return ps;
+    }, keyHolder);
+
+    int id = keyHolder.getKey().intValue();
+    return new Article(id, article.getAuteur(), article.getTitre(), article.getTexte());
+}
 }

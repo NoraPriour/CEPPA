@@ -21,6 +21,6 @@ public class ArticleController {
     }
 
     @PostMapping
-    public Article addArticle(@RequestBody Article newArticle) {return articleRepository.save(newArticle};
-    
+    public Article addArticle(@RequestBody Article newArticle) {return articleRepository.save(newArticle);
+    };
 }

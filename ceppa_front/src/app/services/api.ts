@@ -20,9 +20,9 @@ export class ApiService {
     return this.http.post<CreateUser>('http://localhost:8080/api/users', user);
   }
   getArticles() {
-    return this.http.get<{ id: number, auteur: string, titre: string, texte: string }[]>('http://localhost:8080/api/articles');
+    return this.http.get<{ id: number, author: string, title: string, text: string }[]>('http://localhost:8080/api/articles');
   }
-  newArticle(article: { title: string, author: string, text: string }) {
+  addArticle(article: { title: string, author: string, text: string }) {
     return this.http.post('http://localhost:8080/api/articles', article);
   }
 }
