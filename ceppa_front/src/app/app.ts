@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ApiService } from './services/api';
-import { AsyncPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Subject, switchMap, startWith } from 'rxjs';
+import { Subject, switchMap, startWith, tap } from 'rxjs';
 import { FormatUserPipe } from './format-user-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AsyncPipe, FormsModule, FormatUserPipe],
+  imports: [RouterOutlet, JsonPipe, FormsModule, FormatUserPipe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -44,4 +44,6 @@ export class App {
   ));
 }
 
+// TODO
 // essayer de supprimer les subscribe
+// comprendre pourquoi il y a un fetch à intervale régulier

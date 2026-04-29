@@ -20,6 +20,6 @@ export class ApiService {
     return this.http.post<CreateUser>('http://localhost:8080/api/users', user);
   }
   getArticles() {
-    return this.http.get<{ id: number, auteur: string, titre: string, texte: string }[]>('http://localhost:8080/api/articles');
+    return this.http.get<{ id: number, auteur_id: number, titre: string, texte: string }[]>('http://localhost:8080/api/articles');
   }
 }

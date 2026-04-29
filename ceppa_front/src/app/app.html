@@ -24,7 +24,7 @@
   @for (article of articles(); track article.id) {
     <div class="article">
       <h3>{{ article.titre }}</h3>
-      <p>Par {{ article.auteur }}</p>
+      <p>Par {{ article.auteur_id }}</p>
       <p>{{ article.texte }}</p>
     </div>
   }

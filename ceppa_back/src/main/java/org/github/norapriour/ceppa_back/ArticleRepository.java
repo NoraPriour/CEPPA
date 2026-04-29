@@ -15,7 +15,7 @@ public class ArticleRepository {
     }
 
     public List<Article> findAll() {
-        return jdbc.query("SELECT auteur, titre, texte FROM articles", (rs, rowNum) -> new Article(rs.getString("auteur"), rs.getString("titre"), rs.getString("texte")));
+        return jdbc.query("SELECT auteur_id, titre, texte FROM articles", (rs, rowNum) -> new Article(rs.getInt("auteur_id"), rs.getString("titre"), rs.getString("texte")));
     }
 
 }
