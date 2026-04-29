@@ -5,10 +5,11 @@ import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Subject, switchMap, startWith } from 'rxjs';
+import { FormatUserPipe } from './format-user-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AsyncPipe, FormsModule],
+  imports: [RouterOutlet, AsyncPipe, FormsModule, FormatUserPipe],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
