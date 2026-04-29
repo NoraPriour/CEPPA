@@ -15,7 +15,6 @@ public class ArticleRepository {
     }
 
     public List<Article> findAll() {
-        return jdbc.query("SELECT auteur, titre, texte FROM articles", (rs, rowNum) -> new Article(rs.getString("auteur"), rs.getString("titre"), rs.getString("texte")));
+        return jdbc.query("SELECT a.id, a.titre, a.texte, COALESCE(u.user_name, 'Auteur inconnu') AS auteur FROM articles a LEFT JOIN users u ON a.auteur_id = u.id", (rs, rowNum) -> new Article(rs.getInt("id"), rs.getString("auteur"), rs.getString("titre"), rs.getString("texte")));
     }
-
 }
