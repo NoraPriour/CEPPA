@@ -42,7 +42,12 @@ export class App {
     startWith(null),
     switchMap(() => this.api.getArticles())
   ));
-}
+
+  addArticle(articleTitle: string, articleAuthor: string, articleText: string) {
+    this.api.addArticle({ title: articleTitle, author: articleAuthor, text: articleText }).subscribe(newArticle => {
+      this.refreshArticles$.next();
+    });
+  }
 
 // TODO
 // essayer de supprimer les subscribe

@@ -22,6 +22,9 @@ export class ApiService {
   getArticles() {
     return this.http.get<{ id: number, auteur: string, titre: string, texte: string }[]>('http://localhost:8080/api/articles');
   }
+  newArticle(article: { title: string, author: string, text: string }) {
+    return this.http.post('http://localhost:8080/api/articles', article);
+  }
 }
 
 
