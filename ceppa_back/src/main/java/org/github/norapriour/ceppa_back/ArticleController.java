@@ -19,5 +19,8 @@ public class ArticleController {
     public List<Article> getArticles() {
         return articleRepository.findAll();
     }
-    
+
+    @PostMapping
+    public Article addArticle(@RequestBody Article newArticle) {return articleRepository.save(newArticle);
+    };
 }

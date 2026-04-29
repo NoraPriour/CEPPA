@@ -40,8 +40,16 @@ export class App {
 
   articles = toSignal(this.refreshArticles$.pipe(
     startWith(null),
-    switchMap(() => this.api.getArticles())
+    switchMap(() => this.api.getArticles()),
+
+    tap(data => console.log('articles reçus:', data))
   ));
+
+  addArticle(articleTitle: string, articleAuthor: string, articleText: string) {
+    this.api.addArticle({ title: articleTitle, author: articleAuthor, text: articleText }).subscribe(newArticle => {
+      this.refreshArticles$.next();
+    });
+  }
 }
 
 // TODO

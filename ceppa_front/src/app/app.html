@@ -19,16 +19,22 @@
     </ul>
 </div>
 
-
+<form (ngSubmit)="addArticle(articleTitle.value, articleAuthor.value, articleText.value); articleTitle.value = ''; articleAuthor.value = ''; articleText.value = ''" class="form-card">
+  <h2>Ajouter un nouvel article ✏️ :</h2>
+  <input #articleTitle type="text" placeholder="Titre de l'article" required>
+  <input #articleAuthor type="text" placeholder="Auteur de l'article" required>
+  <textarea #articleText placeholder="Texte de l'article" required></textarea>
+  <button type="submit">Publier</button>
+</form>
 
 <div id="articles">
     <h2> Liste des articles :</h2>
 
   @for (article of articles(); track article.id) {
     <div class="article">
-      <h3>{{ article.titre }}</h3>
-      <p>Par {{ article.auteur }}</p>
-      <p>{{ article.texte }}</p>
+      <h3>{{ article.title }}</h3>
+      <p>Par {{ article.author }}</p>
+      <p>{{ article.text }}</p>
     </div>
   }
 </div>
