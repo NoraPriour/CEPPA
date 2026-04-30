@@ -21,27 +21,31 @@ public class ArticleRepository {
         return jdbc.query("SELECT a.id, a.titre, a.texte, COALESCE(u.user_name, 'Auteur inconnu') AS auteur FROM articles a LEFT JOIN users u ON a.auteur_id = u.id", (rs, rowNum) -> new Article(rs.getInt("id"), rs.getString("auteur"), rs.getString("titre"), rs.getString("texte")));
     }
 
+    public void deleteById(int id) {
+        jdbc.update("DELETE FROM articles WHERE id = ?", id);
+    }
+
+
     public Article save(Article article) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
     Integer auteurId = null;
     List<Integer> ids = jdbc.query(
         "SELECT id FROM users WHERE user_name = ?",
         (rs, rowNum) -> rs.getInt("id"),
-        article.getAuteur()
+        article.auteur()
     );
     if (!ids.isEmpty()) {
         auteurId = ids.get(0);
     }
 
-    // 2. Insert avec auteurId (int ou null)
     final Integer finalAuteurId = auteurId; // nécessaire pour la lambda
     jdbc.update(connection -> {
         PreparedStatement ps = connection.prepareStatement(
             "INSERT INTO articles (titre, texte, auteur_id) VALUES (?, ?, ?)",
             new String[]{"id"}
         );
-        ps.setString(1, article.getTitre());
-        ps.setString(2, article.getTexte());
+        ps.setString(1, article.titre());
+        ps.setString(2, article.texte());
         if (finalAuteurId != null) {
             ps.setInt(3, finalAuteurId);
         } else {
@@ -51,6 +55,6 @@ public class ArticleRepository {
     }, keyHolder);
 
     int id = keyHolder.getKey().intValue();
-    return new Article(id, article.getAuteur(), article.getTitre(), article.getTexte());
+    return new Article(id, article.auteur(), article.titre(), article.texte());
 }
 }
