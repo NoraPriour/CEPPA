@@ -22,6 +22,9 @@ export class ApiService {
   getArticles() {
     return this.http.get<{ id: number, author: string, title: string, text: string }[]>('http://localhost:8080/api/articles');
   }
+  deleteArticle(id: number) {
+    return this.http.delete(`http://localhost:8080/api/articles/${id}`);
+  }
   addArticle(article: { title: string, author: string, text: string }) {
     return this.http.post('http://localhost:8080/api/articles', article);
   }

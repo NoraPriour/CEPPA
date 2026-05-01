@@ -20,6 +20,11 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteArticle(@PathVariable int id) {
+        articleRepository.deleteById(id);
+    }
+
     @PostMapping
     public Article addArticle(@RequestBody Article newArticle) {return articleRepository.save(newArticle);
     };
