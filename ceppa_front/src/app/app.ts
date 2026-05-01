@@ -4,7 +4,7 @@ import { ApiService } from './services/api';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Subject, switchMap, startWith } from 'rxjs';
+import { Subject, switchMap, startWith, tap } from 'rxjs';
 import { FormatUserPipe } from './format-user-pipe';
 
 @Component({
@@ -41,6 +41,8 @@ export class App {
   articles = toSignal(this.refreshArticles$.pipe(
     startWith(null),
     switchMap(() => this.api.getArticles()),
+
+    tap(data => console.log('articles reçus:', data))
   ));
 
   addArticle(articleTitle: string, articleAuthor: string, articleText: string) {
