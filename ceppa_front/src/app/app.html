@@ -3,7 +3,9 @@
 
 <form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''" class="form-card">
   <h2>Ajouter un nouvel utilisateur 🐥 :</h2>
+  <label for="userName">Nom d'utilisateur</label>
   <input #userName type="text" placeholder="Nom d'utilisateur" required>
+  <label for="email">Email</label>
   <input #email type="email" placeholder="email" required>
   <button type="submit">Ajouter</button>
 </form>
@@ -21,8 +23,11 @@
 
 <form (ngSubmit)="addArticle(articleTitle.value, articleAuthor.value, articleText.value); articleTitle.value = ''; articleAuthor.value = ''; articleText.value = ''" class="form-card">
   <h2>Ajouter un nouvel article ✏️ :</h2>
+  <label for="articleTitle">Titre de l'article</label>
   <input #articleTitle type="text" placeholder="Titre de l'article" required>
+  <label for="articleAuthor">Auteur de l'article</label>
   <input #articleAuthor type="text" placeholder="Auteur de l'article" required>
+  <label for="articleText">Texte de l'article</label>
   <textarea #articleText placeholder="Texte de l'article" required></textarea>
   <button type="submit">Publier</button>
 </form>
