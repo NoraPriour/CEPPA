@@ -1,6 +1,11 @@
 <main>
 <h1>Gestion des utilisateurs</h1>
 
+<div class="header-bar">
+  <p>Connecté en tant que {{ username }}</p>
+  <button (click)="logout()" class="logout-btn">Se déconnecter</button>
+</div>
+
 <form (ngSubmit)="addUser(userName.value, email.value); userName.value = ''; email.value = ''" class="form-card">
   <h2>Ajouter un nouvel utilisateur 🐥 :</h2>
   <label for="userName">Nom d'utilisateur</label>

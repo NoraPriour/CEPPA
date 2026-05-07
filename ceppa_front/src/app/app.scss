@@ -1,40 +1,427 @@
+// ==================== VARIABLES & PALETTE ====================
+$primary-color: #6366f1;
+$primary-dark: #4f46e5;
+$primary-light: #818cf8;
+$secondary-color: #10b981;
+$danger-color: #ef4444;
+$text-primary: #1f2937;
+$text-secondary: #6b7280;
+$background: #f9fafb;
+$surface: #ffffff;
+$border-color: #e5e7eb;
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$transition: all 0.3s ease;
+
+// ==================== GLOBAL STYLES ====================
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $background;
+  color: $text-primary;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+// ==================== HEADER ====================
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 30px;
+  padding: 16px;
+  background-color: $surface;
+  border-radius: 8px;
+  border: 1px solid $border-color;
+  box-shadow: $shadow-sm;
+
+  p {
+    margin-bottom: 0;
+    flex: 1;
+  }
+
+  .logout-btn {
+    background: linear-gradient(135deg, $danger-color 0%, #dc2626 100%);
+    margin: 0;
+    margin-left: 16px;
+    padding: 10px 18px;
+    font-size: 13px;
+    flex-shrink: 0;
+
+    &:hover {
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+    }
+  }
+}
+
+// ==================== MAIN CONTENT ====================
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: $text-primary;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: $text-primary;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: $text-secondary;
+    margin-bottom: 10px;
+  }
+}
+
+// ==================== BUTTONS ====================
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+button {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+  color: white;
+  border: none;
+  padding: 11px 24px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: $transition;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &[type="submit"] {
+    width: 100%;
+    padding: 13px 28px;
+    margin-top: 20px;
+    font-size: 15px;
+    background: linear-gradient(135deg, $primary-color 0%, $primary-dark 100%);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+
+    &:hover {
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+  }
+}
+
+// Delete buttons
+.user-row button,
+.article button {
+  background: linear-gradient(135deg, $danger-color 0%, #dc2626 100%);
+  width: auto;
+  margin: 0;
+  margin-top: 0;
+  margin-left: auto;
+  padding: 10px 18px;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  }
+}
+
+// ==================== FORM STYLES ====================
 .form-card {
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  padding: 28px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: $shadow-md;
+  transition: $transition;
+
+  &:hover {
+    border-color: $primary-light;
+    box-shadow: $shadow-lg;
+  }
+
+  label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: $text-primary;
+    font-size: 14px;
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 4px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: $transition;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+
+    &:hover {
+      border-color: $primary-light;
+    }
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+// ==================== INPUT STYLES ====================
+input,
+textarea {
+  &::placeholder {
+    color: #d1d5db;
+  }
+}
+
+// ==================== USER LIST ====================
+.user-list {
+  margin-bottom: 40px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
 }
 
 .user-row {
   display: flex;
   align-items: center;
-  padding: 10px;
-  margin-bottom: 10px;
-  width: 80%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 12px;
+  background-color: $surface;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  transition: $transition;
+  box-shadow: $shadow-sm;
+
+  &:hover {
+    border-color: $primary-light;
+    box-shadow: $shadow-md;
+    background-color: #f5f3ff;
+  }
+
+  span {
+    flex: 1;
+    color: $text-primary;
+    font-weight: 500;
+  }
+
+  button {
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
 }
 
-button {
-    position: absolute;
-    left: 80%;
-    transform: translateX(-80%);
-}
+// ==================== ARTICLES SECTION ====================
+#articles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 20px;
 
-input {
-    margin-right: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
+  h2 {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
 }
 
 .article {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+  background: linear-gradient(135deg, $surface 0%, #f3f4f6 100%);
+  border: 1px solid $border-color;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: $shadow-md;
+  transition: $transition;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: $primary-light;
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  h3 {
+    color: $primary-color;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  p {
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 12px;
+
+    &:first-of-type {
+      font-weight: 600;
+      color: $primary-color;
+    }
+
+    &:last-of-type {
+      flex-grow: 1;
+      text-align: justify;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+  }
+
+  button {
+    align-self: flex-start;
+    margin-top: auto;
+  }
 }
 
-.article p {
-    text-align: justify;
+// ==================== RESPONSIVE DESIGN ====================
+@media (max-width: 768px) {
+  main {
+    padding: 20px 16px;
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-top: 30px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  main > p:first-of-type {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    button {
+      align-self: flex-start;
+    }
+  }
+
+  .form-card {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+
+  .user-row {
+    flex-direction: column;
+    align-items: flex-start;
+
+    button {
+      margin-left: 0;
+      margin-top: 12px;
+      align-self: flex-start;
+    }
+  }
+
+  #articles {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 16px 12px;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .form-card {
+    padding: 16px;
+  }
+
+  button[type="submit"] {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
 }
