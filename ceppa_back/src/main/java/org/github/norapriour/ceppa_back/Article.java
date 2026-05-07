@@ -1,5 +1,6 @@
 package org.github.norapriour.ceppa_back;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Article {
@@ -21,7 +22,7 @@ public class Article {
     @JsonProperty("author")
     public void setAuthor(String author) { this.author = author; }
 
-    @JsonProperty("article_content")
+    @JsonAlias({"article_content", "articleContent"})
     public void setArticleContent(String articleContent) { this.articleContent = articleContent; }
 
     public int getId() { return id; }

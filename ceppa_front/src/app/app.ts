@@ -51,8 +51,8 @@ export class App {
     });
   }
 
-  addArticle(articleTitle: string, articleAuthor: string, articleText: string) {
-    this.api.addArticle({ title: articleTitle, author: articleAuthor, text: articleText }).subscribe(newArticle => {
+  addArticle(articleTitle: string, articleAuthor: string, articleContent: string) {
+    this.api.addArticle({ title: articleTitle, author: articleAuthor, articleContent: articleContent }).subscribe(newArticle => {
       this.refreshArticles$.next();
     });
   }

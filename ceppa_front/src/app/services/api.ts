@@ -29,12 +29,12 @@ export class ApiService {
     return this.http.post<CreateUser>('http://localhost:8080/api/users', user, this.getAuthHeaders());
   }
   getArticles() {
-    return this.http.get<{ id: number, author: string, title: string, text: string }[]>('http://localhost:8080/api/articles', this.getAuthHeaders());
+    return this.http.get<{ id: number, author: string, title: string, articleContent: string }[]>('http://localhost:8080/api/articles', this.getAuthHeaders());
   }
   deleteArticle(id: number) {
     return this.http.delete(`http://localhost:8080/api/articles/${id}`, this.getAuthHeaders());
   }
-  addArticle(article: { title: string, author: string, text: string }) {
+  addArticle(article: { title: string, author: string, articleContent: string }) {
     return this.http.post('http://localhost:8080/api/articles', article, this.getAuthHeaders());
   }
 }

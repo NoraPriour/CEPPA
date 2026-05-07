@@ -26,14 +26,14 @@
     </ul>
 </div>
 
-<form (ngSubmit)="addArticle(articleTitle.value, articleAuthor.value, articleText.value); articleTitle.value = ''; articleAuthor.value = ''; articleText.value = ''" class="form-card">
+<form (ngSubmit)="addArticle(articleTitle.value, articleAuthor.value, articleContent.value); articleTitle.value = ''; articleAuthor.value = ''; articleContent.value = ''" class="form-card">
   <h2>Ajouter un nouvel article ✏️ :</h2>
   <label for="articleTitle">Titre de l'article</label>
   <input #articleTitle type="text" placeholder="Titre de l'article" required>
   <label for="articleAuthor">Auteur de l'article</label>
   <input #articleAuthor type="text" placeholder="Auteur de l'article" required>
-  <label for="articleText">Texte de l'article</label>
-  <textarea #articleText placeholder="Texte de l'article" required></textarea>
+  <label for="articleContent">Contenu de l'article</label>
+  <textarea #articleContent placeholder="Contenu de l'article" required></textarea>
   <button type="submit">Publier</button>
 </form>
 
@@ -44,7 +44,7 @@
     <div class="article">
       <h3>{{ article.title }}</h3>
       <p>Par {{ article.author }}</p>
-      <p>{{ article.text }}</p>
+      <p>{{ article.articleContent }}</p>
       <button (click)="deleteArticle(article.id)">Supprimer</button>
     </div>
   }
