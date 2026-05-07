@@ -32,7 +32,7 @@ public class ArticleRepository {
     List<Integer> ids = jdbc.query(
         "SELECT id FROM users WHERE user_name = ?",
         (rs, rowNum) -> rs.getInt("id"),
-        article.auteur()
+        article.getAuteur()
     );
     if (!ids.isEmpty()) {
         auteurId = ids.get(0);
@@ -44,8 +44,8 @@ public class ArticleRepository {
             "INSERT INTO articles (titre, texte, auteur_id) VALUES (?, ?, ?)",
             new String[]{"id"}
         );
-        ps.setString(1, article.titre());
-        ps.setString(2, article.texte());
+        ps.setString(1, article.getTitre());
+        ps.setString(2, article.getTexte());
         if (finalAuteurId != null) {
             ps.setInt(3, finalAuteurId);
         } else {
@@ -55,6 +55,6 @@ public class ArticleRepository {
     }, keyHolder);
 
     int id = keyHolder.getKey().intValue();
-    return new Article(id, article.auteur(), article.titre(), article.texte());
+    return new Article(id, article.getAuteur(), article.getTitre(), article.getTexte());
 }
 }

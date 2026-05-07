@@ -4,8 +4,9 @@ import { ApiService } from './services/api';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Subject, switchMap, startWith } from 'rxjs';
+import { Subject, switchMap, startWith, tap } from 'rxjs';
 import { FormatUserPipe } from './format-user-pipe';
+import { keycloak } from '../keycloak';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class App {
   private readonly api = inject(ApiService);
   private refreshUsers$ = new Subject<void>();
   private refreshArticles$ = new Subject<void>();
+  username = keycloak.tokenParsed?.['preferred_username'];
 
   users = toSignal(
     this.refreshUsers$.pipe(
@@ -41,6 +43,8 @@ export class App {
   articles = toSignal(this.refreshArticles$.pipe(
     startWith(null),
     switchMap(() => this.api.getArticles()),
+
+    tap(data => console.log('articles reçus:', data))
   ));
 
   deleteArticle(id: number) {
@@ -54,8 +58,11 @@ export class App {
       this.refreshArticles$.next();
     });
   }
+
+  logout() {
+    keycloak.logout({ redirectUri: 'http://localhost:4200' });
+  }
 }
 
 // TODO
 // essayer de supprimer les subscribe
-// comprendre pourquoi il y a un fetch à intervale régulier
