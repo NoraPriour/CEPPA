@@ -43,8 +43,6 @@ export class App {
   articles = toSignal(this.refreshArticles$.pipe(
     startWith(null),
     switchMap(() => this.api.getArticles()),
-
-    tap(data => console.log('articles reçus:', data))
   ));
 
   deleteArticle(id: number) {

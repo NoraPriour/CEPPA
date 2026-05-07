@@ -4,28 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Article {
     private Integer id;
-    private String auteur;
-    private String titre;
-    private String texte;
+    private String author;
+    private String title;
+    private String articleContent;
 
-    public Article(Integer id, String auteur, String titre, String texte) {
+    public Article(Integer id, String author, String title, String articleContent) {
         this.id = id;
-        this.auteur = auteur;
-        this.titre = titre;
-        this.texte = texte;
+        this.author = author;
+        this.title = title;
+        this.articleContent = articleContent;
     }
 
     @JsonProperty("title")
-    public void setTitre(String titre) { this.titre = titre; }
+    public void setTitle(String title) { this.title = title; }
 
     @JsonProperty("author")
-    public void setAuteur(String auteur) { this.auteur = auteur; }
+    public void setAuthor(String author) { this.author = author; }
 
-    @JsonProperty("text")
+    @JsonProperty("article_content")
+    public void setArticleContent(String articleContent) { this.articleContent = articleContent; }
 
-    public void setTexte(String texte) { this.texte = texte; }
     public int getId() { return id; }
-    public String getAuteur() { return auteur; }
-    public String getTitre() { return titre; }
-    public String getTexte() { return texte; }
+    public String getAuthor() { return author; }
+    public String getTitle() { return title; }
+    public String getArticleContent() { return articleContent; }
 }
