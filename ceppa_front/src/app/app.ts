@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+<<<<<<< HEAD
 import { ApiService } from './services/api';
 import { JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,10 +12,17 @@ import { keycloak } from '../keycloak';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, JsonPipe, FormsModule, FormatUserPipe],
+=======
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet],
+>>>>>>> f266748 (feat: separate public site and member area)
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+<<<<<<< HEAD
 export class App {
   private readonly api = inject(ApiService);
   private refreshUsers$ = new Subject<void>();
@@ -66,3 +74,6 @@ export class App {
 
 // TODO
 // essayer de supprimer les subscribe
+=======
+export class App {}
+>>>>>>> f266748 (feat: separate public site and member area)

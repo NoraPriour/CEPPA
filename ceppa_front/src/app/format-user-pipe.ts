@@ -6,8 +6,10 @@ import { Pipe, type PipeTransform } from '@angular/core';
 export class FormatUserPipe implements PipeTransform {
 
   transform(user: unknown): string {
+    const typedUser = user as { userName: string; email: string; keycloakId: string | null };
+    const linkStatus = typedUser.keycloakId ? 'compte Keycloak lie' : 'profil non lie a Keycloak';
 
-    return "⭐ " + (user as { userName: string }).userName + " (id " + (user as { id: number }).id + ")";
+    return `${typedUser.userName} - ${typedUser.email} (${linkStatus})`;
   }
 
 }

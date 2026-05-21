@@ -3,6 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { User, CreateUser, UserId } from '../user-type';
 import { keycloak } from '../../keycloak';
 
+export type Article = {
+  id: number;
+  auteur: string;
+  titre: string;
+  texte: string;
+};
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
 
@@ -26,6 +33,7 @@ export class ApiService {
     return this.http.delete(`http://localhost:8080/api/users/${id}`, this.getAuthHeaders());
   }
   addUser(user: CreateUser) {
+<<<<<<< HEAD
     return this.http.post<CreateUser>('http://localhost:8080/api/users', user, this.getAuthHeaders());
   }
   getArticles() {
@@ -45,3 +53,14 @@ Pour refaire la base de données de 0 (réexecution des scripts de création) :
 Dans pgAdmin : DROP SCHEMA public CASCADE; puis CREATE SCHEMA public;
 Dans IntelliJ : flyway:migrate
 */
+=======
+    return this.http.post<User>('http://localhost:8080/api/users', user);
+  }
+  getArticles() {
+    return this.http.get<Article[]>('http://localhost:8080/api/articles');
+  }
+  getArticle(id: number) {
+    return this.http.get<Article>(`http://localhost:8080/api/articles/${id}`);
+  }
+}
+>>>>>>> f266748 (feat: separate public site and member area)

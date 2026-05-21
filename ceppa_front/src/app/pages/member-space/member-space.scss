@@ -1,0 +1,160 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f5f7fa;
+  color: #1f2933;
+}
+
+.member-page {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 56px;
+}
+
+.member-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.back-link {
+  color: #53606d;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: #1f2933;
+  text-decoration: underline;
+}
+
+h1 {
+  margin: 8px 0 0;
+  font-size: 2.5rem;
+}
+
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+.panel {
+  margin-bottom: 20px;
+  border: 1px solid #d8dee6;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 24px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+input {
+  min-width: min(260px, 100%);
+  border: 1px solid #c8d0da;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  background: #274c77;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 10px 14px;
+}
+
+button:hover {
+  background: #18354f;
+}
+
+.session-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.session-box p {
+  margin: 0;
+  color: #53606d;
+}
+
+.secondary-button {
+  border: 1px solid #c8d0da;
+  background: #ffffff;
+  color: #1f2933;
+}
+
+.secondary-button:hover {
+  background: #eef2f6;
+}
+
+.user-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid #e1e6ee;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.article-list {
+  display: grid;
+  gap: 16px;
+}
+
+.article-preview {
+  display: block;
+  color: inherit;
+  border-top: 1px solid #e1e6ee;
+  padding-top: 16px;
+  text-decoration: none;
+}
+
+.article-preview:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.article-preview:hover h3 {
+  text-decoration: underline;
+}
+
+.article-preview p:last-child {
+  display: -webkit-box;
+  line-clamp: 4;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-author,
+.empty-state {
+  color: #53606d;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .member-header,
+  .session-box,
+  .form-row,
+  .user-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

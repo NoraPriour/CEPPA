@@ -1,0 +1,51 @@
+<main class="member-page">
+  <header class="member-header">
+    <div>
+      <a routerLink="/" class="back-link">Retour au site public</a>
+      <h1>Espace membre</h1>
+    </div>
+    <div class="session-box">
+      <p>Connecte en tant que <strong>{{ displayName() }}</strong></p>
+      <button type="button" class="secondary-button" (click)="logout()">Se deconnecter</button>
+    </div>
+  </header>
+
+  <section class="panel">
+    <form (ngSubmit)="addUser(userName.value, email.value, temporaryPassword.value); userName.value = ''; email.value = ''; temporaryPassword.value = ''" class="form-card">
+      <h2>Ajouter un membre</h2>
+      <div class="form-row">
+        <input #userName type="text" placeholder="Nom affiche" required>
+        <input #email type="email" placeholder="Email" required>
+        <input #temporaryPassword type="password" placeholder="Mot de passe temporaire" required>
+        <button type="submit">Ajouter</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Liste des utilisateurs</h2>
+    <ul class="user-list">
+      @for (user of users(); track user.id) {
+        <li class="user-row">
+          <span>{{ user | appFormatUser }}</span>
+          <button type="button" (click)="deleteUser(user.id)">Supprimer</button>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel">
+    <h2>Apercu des articles</h2>
+    <div class="article-list">
+      @for (article of articles(); track article.id) {
+        <a class="article-preview" [routerLink]="['/articles', article.id]">
+          <h3>{{ article.titre }}</h3>
+          <p class="article-author">Par {{ article.auteur }}</p>
+          <p>{{ article.texte }}</p>
+        </a>
+      } @empty {
+        <p class="empty-state">Aucun article disponible pour le moment.</p>
+      }
+    </div>
+  </section>
+</main>

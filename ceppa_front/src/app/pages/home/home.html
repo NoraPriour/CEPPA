@@ -1,0 +1,59 @@
+<main class="home-page">
+  <header class="site-header">
+    <a class="brand" routerLink="/">CEPPA</a>
+    <a class="member-link" routerLink="/espace-membre">Espace membre</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <p class="kicker">Association CEPPA</p>
+      <h1>Un espace public pour presenter l'association.</h1>
+      <p>
+        Cette page vitrine est accessible a tous, sans connexion. Elle peut presenter les
+        actions de l'association, les actualites publiques et les informations utiles.
+      </p>
+    </div>
+  </section>
+
+  <section class="public-articles" aria-labelledby="articles-title">
+    <div class="section-heading">
+      <p class="kicker">Actualites publiques</p>
+      <h2 id="articles-title">A lire sans connexion</h2>
+    </div>
+
+    <div class="article-list">
+      @for (article of articles(); track article.id) {
+        <a class="article-preview" [routerLink]="['/articles', article.id]">
+          <p class="article-author">Par {{ article.auteur }}</p>
+          <h3>{{ article.titre }}</h3>
+          <p>{{ article.texte }}</p>
+        </a>
+      } @empty {
+        <p class="empty-state">Aucun article public pour le moment.</p>
+      }
+    </div>
+  </section>
+
+  <section class="info-section" aria-label="Informations">
+    <article>
+      <h2>Nos actions</h2>
+      <p>
+        Presente ici les projets, evenements et missions principales de l'association.
+      </p>
+    </article>
+
+    <article>
+      <h2>Actualites</h2>
+      <p>
+        Les contenus publics restent visibles depuis la vitrine, sans compte membre.
+      </p>
+    </article>
+
+    <article>
+      <h2>Contact</h2>
+      <p>
+        Ajoute les informations pratiques pour rejoindre ou contacter l'association.
+      </p>
+    </article>
+  </section>
+</main>
