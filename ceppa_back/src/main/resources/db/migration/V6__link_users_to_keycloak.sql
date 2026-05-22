@@ -1,0 +1,5 @@
+ALTER TABLE users
+ADD COLUMN keycloak_id VARCHAR(255) UNIQUE;
+
+ALTER TABLE users
+DROP COLUMN password;

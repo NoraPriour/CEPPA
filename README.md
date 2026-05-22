@@ -34,6 +34,15 @@ Architecture:
 - Protection des routes
 - Structure REST API
 
+Authentification:
+
+- Keycloak est la source de verite pour la connexion, les mots de passe, les sessions et les roles.
+- La base applicative CEPPA ne stocke pas les mots de passe des membres.
+- La table users sert de profil metier et peut etre reliee a Keycloak avec la colonne keycloak_id.
+- La creation d'un membre depuis l'espace membre cree aussi le compte Keycloak via l'Admin API.
+- Pour cela, Keycloak doit contenir un client confidentiel `ceppa-back-admin` avec les service accounts actives et le role `realm-management/manage-users`.
+- Le secret du client backend est fourni a Spring Boot avec la variable d'environnement `KEYCLOAK_ADMIN_CLIENT_SECRET`.
+
 
 Accessibilité:
 
